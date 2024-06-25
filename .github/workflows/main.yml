@@ -1,0 +1,14 @@
+name: Reusable Docker Build Workflow
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  call-reusable-workflow:
+    uses: priyank24/sharedwrkflw/.github/workflows/main.yml@main
+    with:
+      docker_repo_dev: 'priyank24/dev'
+      docker_repo_prod: 'priyank24/prod'
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
